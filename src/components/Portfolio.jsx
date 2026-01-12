@@ -29,43 +29,43 @@ const PROJECT_METADATA = {
         title: "Movora Play",
         category: "Design",
         description: "Social Media Design & Photo Editing",
-        thumbnail: "/src/assets/thumbnails/Movora Play.png"
+        thumbnail: "/src/assets/thumbnails/Movora Play.webp"
     },
     "TSE X ROYAL HYPEFESTIVE": {
         title: "TSE X ROYAL HYPEFESTIVE",
         category: "Operator",
         description: "Event Broadcast Scene Setup & Live Event Operations",
-        thumbnail: "/src/assets/thumbnails/TSE X ROYAL HYPEFESTIVE.png"
+        thumbnail: "/src/assets/thumbnails/TSE X ROYAL HYPEFESTIVE.webp"
     },
     "East Java Student Leader Summit": {
         title: "East Java Student Leader Summit",
         category: "Photographer",
         description: "Event Documentation & Moment Capturing",
-        thumbnail: "/src/assets/thumbnails/East Java Student Leader Summit.png"
+        thumbnail: "/src/assets/thumbnails/East Java Student Leader Summit.webp"
     },
     "Royal Japan HYPE MLBB Tournament": {
         title: "Royal Japan HYPE MLBB Tournament",
         category: "Operator",
         description: "Broadcast Workflow Setup & Live Tournament Operations",
-        thumbnail: "/src/assets/thumbnails/Royal Japan HYPE MLBB Tournament.png"
+        thumbnail: "/src/assets/thumbnails/Royal Japan HYPE MLBB Tournament.webp"
     },
     "FotoRek!": {
         title: "FotoRek!",
         category: "Design",
         description: "Graphic Design for Feeds, Posters, Banners, and Photo Strips, with Responsibility for Camera and Lens Recommendations",
-        thumbnail: "/src/assets/thumbnails/FotoRek!.png"
+        thumbnail: "/src/assets/thumbnails/FotoRek!.webp"
     },
     "Marketing Crew Telkom University Surabaya": {
         title: "Marketing Crew Telkom University Surabaya",
         category: "Design",
         description: "Graphic design for Instagram feeds and stories, managing visual content and maintaining consistent branding across social media",
-        thumbnail: "/src/assets/thumbnails/Marketing Crew Telkom University Surabaya.png"
+        thumbnail: "/src/assets/thumbnails/Marketing Crew Telkom University Surabaya.webp"
     },
     "Telkom University Surabaya Esport": {
         title: "Telkom University Surabaya Esport",
         category: "Design",
         description: "Led the media promotion team, overseeing visual design and broadcast operations, including scene setup, operator coordination, and end-to-end live event execution",
-        thumbnail: "/src/assets/thumbnails/Telkom University Surabaya Esport.png"
+        thumbnail: "/src/assets/thumbnails/Telkom University Surabaya Esport.webp"
     },
 };
 

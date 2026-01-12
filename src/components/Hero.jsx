@@ -79,7 +79,7 @@ const Hero = () => {
                 >
                     {/* The Image (Static) */}
                     <img
-                        src="images/PROFIL.png"
+                        src="images/PROFIL.webp"
                         alt="Profile Background"
                         className="w-full h-full object-cover opacity-60"
                         style={{ objectPosition: 'center 20%' }}
