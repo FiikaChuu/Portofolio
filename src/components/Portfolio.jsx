@@ -18,6 +18,7 @@ import { ExternalLink, Play } from 'lucide-react';
    "NAMA FOLDER ASLI": {
        title: "Judul Tampilan (Bebas)", 
        category: "Design / Operator / Esport / Photographer", 
+       year: "2024", // <--- Ganti Tahun di sini
        description: "Deskripsi Pekerjaan...",
        thumbnail: "/src/assets/thumbnails/NAMA_FILE_GAMBAR.png" 
    },
@@ -28,42 +29,49 @@ const PROJECT_METADATA = {
     "Movora Play": {
         title: "Movora Play",
         category: "Design",
+        year: "2025",
         description: "Social Media Design & Photo Editing",
         thumbnail: "/src/assets/thumbnails/Movora Play.webp"
     },
     "TSE X ROYAL HYPEFESTIVE": {
         title: "TSE X ROYAL HYPEFESTIVE",
         category: "Operator",
+        year: "2024",
         description: "Event Broadcast Scene Setup & Live Event Operations",
         thumbnail: "/src/assets/thumbnails/TSE X ROYAL HYPEFESTIVE.webp"
     },
     "East Java Student Leader Summit": {
         title: "East Java Student Leader Summit",
         category: "Photographer",
+        year: "2025",
         description: "Event Documentation & Moment Capturing",
         thumbnail: "/src/assets/thumbnails/East Java Student Leader Summit.webp"
     },
     "Royal Japan HYPE MLBB Tournament": {
         title: "Royal Japan HYPE MLBB Tournament",
         category: "Operator",
+        year: "2025",
         description: "Broadcast Workflow Setup & Live Tournament Operations",
         thumbnail: "/src/assets/thumbnails/Royal Japan HYPE MLBB Tournament.webp"
     },
     "FotoRek!": {
         title: "FotoRek!",
         category: "Design",
+        year: "2026",
         description: "Graphic Design for Feeds, Posters, Banners, and Photo Strips, with Responsibility for Camera and Lens Recommendations",
         thumbnail: "/src/assets/thumbnails/FotoRek!.webp"
     },
     "Marketing Crew Telkom University Surabaya": {
         title: "Marketing Crew Telkom University Surabaya",
         category: "Design",
+        year: "2024",
         description: "Graphic design for Instagram feeds and stories, managing visual content and maintaining consistent branding across social media",
         thumbnail: "/src/assets/thumbnails/Marketing Crew Telkom University Surabaya.webp"
     },
     "Telkom University Surabaya Esport": {
         title: "Telkom University Surabaya Esport",
         category: "Design",
+        year: "2023",
         description: "Led the media promotion team, overseeing visual design and broadcast operations, including scene setup, operator coordination, and end-to-end live event execution",
         thumbnail: "/src/assets/thumbnails/Telkom University Surabaya Esport.webp"
     },
@@ -141,6 +149,7 @@ const Portfolio = () => {
                         id: folderName, // This is the Key used for sorting
                         title: displayName, // Show the custom title
                         category: category,
+                        year: meta.year || "2024", // Default year if missing
                         items: [],
                         thumbnail: getThumbnail(folderName, customThumb) || src,
                         desc: desc
@@ -296,7 +305,11 @@ const Portfolio = () => {
 
                                 {/* 3. Text Overlay (PERMANENTLY VISIBLE) */}
                                 <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/95 via-black/40 to-transparent flex flex-col justify-end p-6 pointer-events-none">
-                                    <span className="text-primary text-xs uppercase tracking-wider font-bold mb-1">{project.category}</span>
+                                    <div className="flex items-center gap-1 mb-1 text-xs uppercase tracking-wider font-bold">
+                                        <span className="text-primary">{project.category}</span>
+                                        <span className="text-white">-</span>
+                                        <span className="text-white">{project.year}</span>
+                                    </div>
                                     <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
                                     <p className="text-gray-300 text-sm font-medium border-l-2 border-primary pl-3">{project.desc}</p>
                                 </div>

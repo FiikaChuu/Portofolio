@@ -1,6 +1,7 @@
 import React, { useState, Suspense } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Welcome from './components/Welcome';
+import Loading from './components/Loading';
 
 const Navbar = React.lazy(() => import('./components/Navbar'));
 const Hero = React.lazy(() => import('./components/Hero'));
@@ -12,15 +13,23 @@ const Contact = React.lazy(() => import('./components/Contact'));
 
 function App() {
     const [showWelcome, setShowWelcome] = useState(true);
-    const [isPreloading, setIsPreloading] = useState(false);
+    const [showLoading, setShowLoading] = useState(false);
+    const [showContent, setShowContent] = useState(false);
 
     const handleEnter = () => {
-        setIsPreloading(true);
-        // Delay to allow assets to buffer/mount while user sees "Loading..."
+        setShowWelcome(false);
+        setShowLoading(true);
+    };
+
+    const handleLoadingComplete = () => {
+        // 1. Loading finishes -> Fade out Loading Screen
+        setShowLoading(false);
+
+        // 2. Wait for Loading exit animation (0.8s) to finish -> Screen is Black
+        // 3. Then fade in Content
         setTimeout(() => {
-            setShowWelcome(false);
-            setIsPreloading(false);
-        }, 1500);
+            setShowContent(true);
+        }, 1000);
     };
 
     return (
@@ -30,18 +39,19 @@ function App() {
                     <Welcome
                         key="welcome"
                         onEnter={handleEnter}
-                        isPreloading={isPreloading}
+                    />
+                )}
+                {showLoading && (
+                    <Loading
+                        key="loading"
+                        onComplete={handleLoadingComplete}
                     />
                 )}
             </AnimatePresence>
 
-            {/* Content is rendered BEHIND Welcome screen to buffer assets */}
-            <div className={`${showWelcome ? 'fixed inset-0 overflow-hidden pointer-events-none' : ''}`}>
-                <Suspense fallback={
-                    <div className="flex items-center justify-center h-screen bg-background text-primary">
-                        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-                    </div>
-                }>
+            {/* Content is rendered BEHIND but invisible until transition completes */}
+            <div className={`transition-opacity duration-1000 ease-out ${showContent ? 'opacity-100' : 'fixed inset-0 overflow-hidden pointer-events-none opacity-0'}`}>
+                <Suspense fallback={null}>
                     <Navbar />
                     <Hero />
                     <About />

@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import LiquidEther from './LiquidEther';
+import StarBorder from './StarBorder';
 
 const Welcome = ({ onEnter, isPreloading }) => {
     return (
@@ -9,9 +11,26 @@ const Welcome = ({ onEnter, isPreloading }) => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
         >
-            {/* Background Ambience */}
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] animate-pulse" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+            {/* Background Ambience - Liquid Fluid Simulation */}
+            <div className="absolute inset-0 z-0">
+                <LiquidEther
+                    colors={['#5227FF', '#FF00CC', '#BD00FF']}
+                    mouseForce={20}
+                    cursorSize={100}
+                    isViscous={false}
+                    viscous={30}
+                    iterationsViscous={32}
+                    iterationsPoisson={32}
+                    resolution={0.5}
+                    isBounce={false}
+                    autoDemo={true}
+                    autoSpeed={0.5}
+                    autoIntensity={2.2}
+                    takeoverDuration={0.25}
+                    autoResumeDelay={3000}
+                    autoRampDuration={0.6}
+                />
+            </div>
 
             <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -19,15 +38,39 @@ const Welcome = ({ onEnter, isPreloading }) => {
                 transition={{ duration: 1 }}
                 className="relative z-10 text-center px-6"
             >
-                {/* Profile Image with Glow */}
-                <div className="mb-8 relative inline-block">
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-md opacity-50 animate-pulse"></div>
-                    <img
+                {/* Profile Image with Rotating Glow & Pop Effect */}
+                <motion.div
+                    className="mb-8 relative inline-block cursor-pointer"
+                    whileHover="hover"
+                    initial="rest"
+                    whileTap={{ scale: 0.95 }}
+                >
+                    {/* Moving/Rotating Glow */}
+                    <motion.div
+                        className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary via-secondary to-primary blur-md opacity-70"
+                        variants={{
+                            rest: { rotate: 0, scale: 1 },
+                            hover: {
+                                rotate: 360,
+                                scale: 1.4,
+                                transition: {
+                                    rotate: { duration: 2, repeat: Infinity, ease: "linear" },
+                                    scale: { duration: 0.3 }
+                                }
+                            }
+                        }}
+                    />
+
+                    <motion.img
                         src="/images/profile-hero.webp"
                         alt="Profile"
-                        className="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-white/20"
+                        className="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-white/20 shadow-2xl z-10"
+                        variants={{
+                            rest: { scale: 1 },
+                            hover: { scale: 1.3, transition: { type: "spring", stiffness: 300 } }
+                        }}
                     />
-                </div>
+                </motion.div>
 
                 <motion.h1
                     className="text-4xl md:text-6xl font-display font-bold text-white mb-2 tracking-tight"
@@ -56,37 +99,20 @@ const Welcome = ({ onEnter, isPreloading }) => {
                     Creative Designer <span className="text-primary mx-2">&bull;</span> Esports Operator
                 </motion.p>
 
-                <motion.button
-                    onClick={onEnter}
-                    disabled={isPreloading}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`group relative px-8 py-4 bg-transparent border border-white/20 rounded-full text-white font-medium overflow-hidden transition-all ${isPreloading ? 'cursor-wait opacity-80' : 'hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,242,234,0.3)]'}`}
-                >
-                    <div className="absolute inset-0 w-full h-full bg-surface/50 group-hover:bg-primary/10 transition-colors"></div>
-                    <span className="relative flex items-center gap-2">
-                        {isPreloading ? (
-                            <>
-                                GENERATING...
-                                <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-                            </>
-                        ) : (
-                            <>
-                                ENTER PORTFOLIO
-                                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </>
-                        )}
-                    </span>
-                </motion.button>
+                <div onClick={onEnter} className="cursor-pointer inline-block">
+                    <StarBorder
+                        as="button"
+                        className="custom-class"
+                        color="#00f2ea"
+                        speed="4s"
+                    >
+                        <span className="relative flex items-center gap-2 px-8 py-3 z-10 font-bold tracking-wider group">
+                            ENTER PORTFOLIO
+                            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </span>
+                    </StarBorder>
+                </div>
             </motion.div>
-
-            {/* Loading Bar Effect */}
-            <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 2, ease: "circOut" }}
-                className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-secondary"
-            />
         </motion.div>
     );
 };
