@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 
-const Welcome = ({ onEnter }) => {
+const Welcome = ({ onEnter, isPreloading }) => {
     return (
         <motion.div
             className="fixed inset-0 z-[60] bg-background flex flex-col items-center justify-center overflow-hidden"
@@ -58,14 +58,24 @@ const Welcome = ({ onEnter }) => {
 
                 <motion.button
                     onClick={onEnter}
+                    disabled={isPreloading}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group relative px-8 py-4 bg-transparent border border-white/20 rounded-full text-white font-medium overflow-hidden transition-all hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,242,234,0.3)]"
+                    className={`group relative px-8 py-4 bg-transparent border border-white/20 rounded-full text-white font-medium overflow-hidden transition-all ${isPreloading ? 'cursor-wait opacity-80' : 'hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,242,234,0.3)]'}`}
                 >
                     <div className="absolute inset-0 w-full h-full bg-surface/50 group-hover:bg-primary/10 transition-colors"></div>
                     <span className="relative flex items-center gap-2">
-                        ENTER PORTFOLIO
-                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        {isPreloading ? (
+                            <>
+                                GENERATING...
+                                <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                            </>
+                        ) : (
+                            <>
+                                ENTER PORTFOLIO
+                                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </>
+                        )}
                     </span>
                 </motion.button>
             </motion.div>

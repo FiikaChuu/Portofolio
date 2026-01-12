@@ -286,10 +286,12 @@ const Portfolio = () => {
                                 </motion.div>
 
                                 {/* 2. Internal Tilted GRID Animation (Reveals on Hover) */}
-                                {/* OPTIMIZATION: Only mount this heavy component if this specific project is hovered */}
-                                {hoveredProject === project.id && (
-                                    <InternalProjectGrid items={project.items} />
-                                )}
+                                {/* 2. Internal Tilted GRID Animation (Reveals on Hover) */}
+                                {/* OPTIMIZATION: Always mount but only play when hovered */}
+                                <InternalProjectGrid
+                                    items={project.items}
+                                    isActive={hoveredProject === project.id}
+                                />
 
 
                                 {/* 3. Text Overlay (PERMANENTLY VISIBLE) */}

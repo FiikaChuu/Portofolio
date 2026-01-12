@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
-const InternalProjectGrid = React.memo(({ items }) => {
+const InternalProjectGrid = React.memo(({ items, isActive }) => {
     // PRE-CALCULATION:
     // Distribute items into columns only once when items change
     const { desktopCols, mobileCols } = useMemo(() => {
@@ -39,6 +39,7 @@ const InternalProjectGrid = React.memo(({ items }) => {
                     className="flex flex-col gap-4 transform-gpu will-change-transform"
                     style={{
                         animation: `scrollUp ${duration} linear infinite`,
+                        animationPlayState: isActive ? 'running' : 'paused',
                         backfaceVisibility: 'hidden',
                         WebkitBackfaceVisibility: 'hidden'
                     }}
@@ -46,7 +47,7 @@ const InternalProjectGrid = React.memo(({ items }) => {
                     {repeatedItems.map((item, idx) => (
                         <div key={idx} className="w-full rounded-lg overflow-hidden relative shadow-sm bg-gray-800">
                             {item.type === 'video' ? (
-                                <SmartVideo src={item.src} />
+                                <SmartVideo src={item.src} isActive={isActive} />
                             ) : (
                                 <img loading="lazy"
                                     src={item.src}
@@ -102,7 +103,7 @@ const InternalProjectGrid = React.memo(({ items }) => {
 
 // SMART VIDEO COMPONENT
 // Handles IntersectionObserver to only play video when in viewport
-const SmartVideo = React.memo(({ src }) => {
+const SmartVideo = React.memo(({ src, isActive }) => {
     const videoRef = React.useRef(null);
     const [isLoaded, setIsLoaded] = React.useState(false);
 
@@ -110,17 +111,24 @@ const SmartVideo = React.memo(({ src }) => {
         const video = videoRef.current;
         if (!video) return;
 
+        // If not active (not hovered), force pause immediately to save resources
+        if (!isActive) {
+            video.pause();
+            return;
+        }
+
+        // If active, use IntersectionObserver to play only when in view (double optimization)
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        video.play().catch(() => { }); // Auto-play when visible
+                    if (entry.isIntersecting && isActive) {
+                        video.play().catch(() => { });
                     } else {
-                        video.pause(); // Pause when off-screen to save CPU
+                        video.pause();
                     }
                 });
             },
-            { threshold: 0.1 } // Trigger when 10% visible
+            { threshold: 0.1 }
         );
 
         observer.observe(video);
@@ -128,7 +136,7 @@ const SmartVideo = React.memo(({ src }) => {
         return () => {
             if (video) observer.unobserve(video);
         };
-    }, []);
+    }, [isActive]);
 
     return (
         <video
