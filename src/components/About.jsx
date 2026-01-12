@@ -21,7 +21,7 @@ const About = () => {
                             <div className="absolute -inset-2 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                             <div className="relative rounded-2xl overflow-hidden bg-background aspect-[4/3]">
                                 <img
-                                    src="public/images/foto.png"
+                                    src="/images/foto.webp"
                                     alt="Working"
                                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                                 />

@@ -147,8 +147,16 @@ const Portfolio = () => {
                     });
                 }
 
-                projectMap.get(folderName).items.push({ src, type });
+                projectMap.get(folderName).items.push({ src, type, path }); // Store path for sorting
             }
+        });
+
+        // SORT ITEMS inside each project (Fix for "scrambled" animation)
+        projectMap.forEach((project) => {
+            project.items.sort((a, b) => {
+                // Natural sort (so 1.png, 2.png, 10.png orders correctly)
+                return a.path.localeCompare(b.path, undefined, { numeric: true, sensitivity: 'base' });
+            });
         });
 
         let projectsArray = Array.from(projectMap.values());
