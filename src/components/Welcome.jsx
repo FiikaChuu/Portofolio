@@ -23,7 +23,7 @@ const Welcome = ({ onEnter }) => {
                 <div className="mb-8 relative inline-block">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-md opacity-50 animate-pulse"></div>
                     <img
-                        src="/images/profile-hero.png"
+                        src="/images/profile-hero.webp"
                         alt="Profile"
                         className="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-white/20"
                     />
