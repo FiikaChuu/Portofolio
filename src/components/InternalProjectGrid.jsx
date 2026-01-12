@@ -48,11 +48,10 @@ const InternalProjectGrid = React.memo(({ items }) => {
                             {item.type === 'video' ? (
                                 <SmartVideo src={item.src} />
                             ) : (
-                                <img
+                                <img loading="lazy"
                                     src={item.src}
                                     alt=""
                                     className="w-full h-auto block object-cover pointer-events-none"
-                                    loading="lazy"
                                     decoding="async"
                                 />
                             )}

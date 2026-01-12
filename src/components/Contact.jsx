@@ -28,7 +28,7 @@ const MarqueeColumn = ({ images = [], duration = 60, reverse = false }) => {
         >
             {/* Duplicating images for smooth loop/density */}
             {[...images, ...images].map((src, i) => (
-                <img key={i} src={src} className="w-full h-auto rounded-xl object-cover shadow-lg" alt="Portfolio" />
+                <img loading="lazy" key={i} src={src} className="w-full h-auto rounded-xl object-cover shadow-lg" alt="Portfolio" />
             ))}
         </motion.div>
     );

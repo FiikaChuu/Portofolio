@@ -278,7 +278,7 @@ const Portfolio = () => {
                                         hover: { opacity: 0, transition: { duration: 0.3 } }
                                     }}
                                 >
-                                    <img
+                                    <img loading="lazy"
                                         src={project.thumbnail}
                                         alt={`${project.title} Thumbnail`}
                                         className="w-full h-full object-cover"
