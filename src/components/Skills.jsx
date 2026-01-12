@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PenTool, Monitor, Video, Layout, Camera, Film } from 'lucide-react';
+import { PenTool, Monitor, Video, Camera, Film } from 'lucide-react';
 
 const SkillCard = ({ icon: Icon, title, desc, delay }) => (
     <motion.div

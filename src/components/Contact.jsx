@@ -96,7 +96,7 @@ const Contact = () => {
             <div className="w-full px-6 md:px-12 lg:px-20 relative z-30 pt-32 pb-10 min-h-screen flex flex-col justify-between">
                 <div className="md:w-1/2 my-auto">
                     <h2 className="text-5xl md:text-7xl font-display font-bold mb-8 leading-tight">
-                        Let's Create & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">Compete.</span>
+                        Let&apos;s Create & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">Compete.</span>
                     </h2>
                     <p className="text-gray-400 text-xl max-w-md mb-12">
                         Open for freelance projects, tournament operations, and creative collaborations. Ready to elevate your game?

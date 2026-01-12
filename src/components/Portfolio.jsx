@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import InternalProjectGrid from './InternalProjectGrid';
-import { ExternalLink, Play } from 'lucide-react';
 
 // ============================================================================
 // 📁 PORTFOLIO CONFIGURATION - EDIT THIS SECTION
@@ -249,7 +248,7 @@ const Portfolio = () => {
                         className="columns-1 md:columns-2 lg:columns-3 gap-8 min-h-[50vh] space-y-8"
                     >
                         {/* Render Projects */}
-                        {currentProjects.map((project, index) => (
+                        {currentProjects.map((project) => (
                             <motion.div
                                 key={project.id}
                                 variants={{

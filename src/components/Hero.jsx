@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Instagram, Mail, Gamepad2 } from 'lucide-react';
+import { ArrowRight, Instagram, Mail } from 'lucide-react';
 
 const Hero = () => {
     return (
@@ -146,7 +146,7 @@ const Hero = () => {
                             Creative Professional
                         </span>
                         <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                            Hi, I'm <span className="text-primary">Muhammad Afzal</span>
+                            Hi, I&apos;m <span className="text-primary">Muhammad Afzal</span>
                         </h2>
                     </motion.div>
 
