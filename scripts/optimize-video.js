@@ -71,7 +71,9 @@ const optimizeVideos = async () => {
 
         } catch (error) {
             console.error(`Error optimizing ${file}:`, error);
-            try { await fs.unlink(file.replace('.mp4', '_temp.mp4')); } catch (e) { }
+            try { await fs.unlink(file.replace('.mp4', '_temp.mp4')); } catch (e) {
+                // Ignore temp file cleanup errors
+            }
         }
     }
 
